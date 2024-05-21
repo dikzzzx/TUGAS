@@ -1,0 +1,89 @@
+    SOAL 1
+
+Membuat Database Baru
+
+    CREATE Database myshop;
+
+    SOAL 2
+
+Membuat Tabel dalam Database
+A. users
+
+CREATE TABLE users (
+    id int PRIMARY KEY AUTO_INCREMENT,
+    name varchar(255) not null,
+    email varchar(255) not null,
+    password varchar(255) not null
+    )
+
+B. categories
+
+CREATE TABLE categories (
+    id int PRIMARY KEY AUTO_INCREMENT,
+    name varchar(255) not null
+    )
+
+C. item
+
+CREATE TABLE items ( id int PRIMARY KEY AUTO_INCREMENT, name varchar(255) not null, description varchar(255) not null, price int not null, stock int not null, categories_id int not null, FOREIGN KEY(categories_id) REFERENCES categories(id) );
+
+    Soal 3
+
+Memasukkan Data pada Table
+
+A. Tabel users
+    
+    INSERT INTO users (name,email,password) VALUES ('Dicky Syahputra', 'dickysyahputra240@gmail.com','dicky123'), ('Jane Doe', ' jane@doe.com', 'jenita123');
+
+B. Tabel categories
+    
+    INSERT INTO categories (name) VALUES ('gadget'), ('cloth'), ('men'), ('women'), ('branded');
+
+
+C. Tabel items
+
+INSERT INTO items (name, description, price, stock, categories_id) VALUES ('Sumsang b50', 'hape keren dari merek sumsang', '4000000','100','1');    
+INSERT INTO items (name, description, price, stock, categories_id) VALUES ('Unikloh','baju keren dari brand ternama','500000','50','2');
+INSERT INTO items (name, description, price, stock, categories_id) VALUES("IMHO Watch","jam tangan anak yang jujur banget", "2000000","10","1");
+
+    Soal 4 
+
+A. Mengambil Data users 
+Menampilkan Semua data di Tabel users
+    
+    SELECT name,email FROM users;
+
+B. Mengambil Data items
+Menampilkan data item di table items
+    
+    SELECT * FROM items WHERE price > 1000000;
+
+Menampilkan data item di tabel items
+
+    SELECT * FROM items WHERE name LIKE 'Unikloh';
+
+C. Menampilkan data items join dengan kategori
+Menampilkan data items
+
+    SELECT
+        items.name,
+        items.description,
+        items.price,
+        items.stock,
+        items.categories_id AS category_id,
+        categories.name AS kategori
+    FROM
+        items
+    JOIN
+        categories
+    ON
+        items.categories_id = categories.id;
+
+
+    Soal No 5
+
+Mengubah data pada tabel items
+
+    UPDATE items
+    SET price = '2500000'
+    WHERE id = 1;
